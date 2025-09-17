@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipos de Almacenamiento de Datos</title>
+  <!-- Tailwind vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-6 text-center shadow-md">
+    <h1 class="text-3xl font-bold">Tipos de Almacenamiento de Datos</h1>
+    <p class="mt-2">Una guía educativa interactiva</p>
+  </header>
+
+  <!-- Filtro -->
+  <section class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Filtro de categorías</h2>
+    <select id="filtro" class="p-2 border rounded">
+      <option value="todos">Mostrar todos</option>
+      <option value="primario">Almacenamiento Primario</option>
+      <option value="secundario">Almacenamiento Secundario</option>
+      <option value="nube">Almacenamiento en la Nube</option>
+    </select>
+  </section>
+
+  <!-- Tarjetas -->
+  <section class="p-6 max-w-5xl mx-auto grid gap-6 md:grid-cols-3" id="tarjetas">
+    <div class="card bg-white p-4 rounded-xl shadow hover:shadow-lg transition" data-cat="primario">
+      <h3 class="text-xl font-bold mb-2">Memoria RAM</h3>
+      <p>Almacenamiento temporal y volátil, usado por el procesador.</p>
+    </div>
+    <div class="card bg-white p-4 rounded-xl shadow hover:shadow-lg transition" data-cat="secundario">
+      <h3 class="text-xl font-bold mb-2">Disco Duro (HDD)</h3>
+      <p>Almacenamiento masivo, económico pero más lento.</p>
+    </div>
+    <div class="card bg-white p-4 rounded-xl shadow hover:shadow-lg transition" data-cat="secundario">
+      <h3 class="text-xl font-bold mb-2">Unidad SSD</h3>
+      <p>Más rápida y resistente que los HDD, usada en portátiles y servidores.</p>
+    </div>
+    <div class="card bg-white p-4 rounded-xl shadow hover:shadow-lg transition" data-cat="nube">
+      <h3 class="text-xl font-bold mb-2">Cloud Storage</h3>
+      <p>Acceso remoto a datos mediante internet, flexible y escalable.</p>
+    </div>
+  </section>
+
+  <!-- Tabla comparativa -->
+  <section class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Tabla Comparativa</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse bg-white rounded shadow">
+        <thead class="bg-blue-600 text-white">
+          <tr>
+            <th class="p-3 border">Tipo</th>
+            <th class="p-3 border">Velocidad</th>
+            <th class="p-3 border">Capacidad</th>
+            <th class="p-3 border">Costo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-3 border">RAM</td>
+            <td class="p-3 border">Muy Alta</td>
+            <td class="p-3 border">Baja</td>
+            <td class="p-3 border">Medio</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-3 border">HDD</td>
+            <td class="p-3 border">Baja</td>
+            <td class="p-3 border">Muy Alta</td>
+            <td class="p-3 border">Bajo</td>
+          </tr>
+          <tr>
+            <td class="p-3 border">SSD</td>
+            <td class="p-3 border">Alta</td>
+            <td class="p-3 border">Alta</td>
+            <td class="p-3 border">Medio</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-3 border">Nube</td>
+            <td class="p-3 border">Variable</td>
+            <td class="p-3 border">Escalable</td>
+            <td class="p-3 border">Por suscripción</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Glosario -->
+  <section class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Glosario</h2>
+    <dl class="bg-white p-4 rounded shadow">
+      <dt class="font-bold">RAM</dt>
+      <dd class="mb-3">Memoria de acceso aleatorio, volátil y de alta velocidad.</dd>
+      <dt class="font-bold">HDD</dt>
+      <dd class="mb-3">Unidad de disco duro magnético, de gran capacidad.</dd>
+      <dt class="font-bold">SSD</dt>
+      <dd class="mb-3">Unidad de estado sólido, más rápida que HDD.</dd>
+      <dt class="font-bold">Cloud Storage</dt>
+      <dd>Servicio de almacenamiento accesible por internet.</dd>
+    </dl>
+  </section>
+
+  <!-- Quiz -->
+  <section class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Quiz</h2>
+    <p class="mb-2">¿Cuál es el almacenamiento más rápido?</p>
+    <button class="respuesta bg-blue-500 text-white px-4 py-2 rounded m-1" data-correct="true">RAM</button>
+    <button class="respuesta bg-blue-500 text-white px-4 py-2 rounded m-1">HDD</button>
+    <button class="respuesta bg-blue-500 text-white px-4 py-2 rounded m-1">SSD</button>
+  </section>
+
+  <!-- Script -->
+  <script>
+    // Filtro
+    const filtro = document.getElementById("filtro");
+    const tarjetas = document.querySelectorAll("#tarjetas .card");
+
+    filtro.addEventListener("change", () => {
+      const val = filtro.value;
+      tarjetas.forEach(card => {
+        card.style.display = (val === "todos" || card.dataset.cat === val) ? "block" : "none";
+      });
+    });
+
+    // Quiz
+    const respuestas = document.querySelectorAll(".respuesta");
+    respuestas.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.correct) {
+          alert("✅ Correcto: la RAM es la más rápida.");
+        } else {
+          alert("❌ Incorrecto, inténtalo de nuevo.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
